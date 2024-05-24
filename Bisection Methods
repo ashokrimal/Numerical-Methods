@@ -1,0 +1,50 @@
+//Bisection method numerical method using c++
+
+
+#include<iostream>
+#include<cmath>
+#define EP 0.00001
+using namespace std;
+
+double f(double x)
+{
+    return pow(x, 6) - pow(x, 4) - x*x*x - 1;
+}
+
+void bisection(double a, double b)
+{
+    if (f(a)*f(b) == 0)
+    {
+        cout << "Assume the right value of a and b \n";
+    }
+    else
+    {
+        double c = a;
+        while ((b - a) >= EP)
+        {
+            c = (a + b) / 2;
+            if (f(c) == 0.0)
+            {
+                break;
+            }
+            else if (f(c) * f(a) < 0)
+            {
+                b = c;
+            }
+            else
+            {
+                a = c;
+            }
+        }
+        cout << "Therefore the root of the function is : " << c;
+    }
+}
+
+int main()
+{
+    double a, b;
+    cout << "Enter the value of a and b respectively \n";
+    cin >> a >> b;
+    bisection(a, b);
+    return 0;
+}
